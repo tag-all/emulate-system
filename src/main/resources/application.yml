@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: emulate-system
+  datasource:
+    platform: postgres
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://ec2-52-18-116-67.eu-west-1.compute.amazonaws.com:5432/d1i7dcc3irigm7
+    username: hckhlabzgutfuq
+    password: b48f0dfa9cf52a908674ca1d57110202043fc528a625ca67d487e010611b0189
+  jpa:
+    database: POSTGRESQL
+    hibernate:
+      dl-auto: none
+  flyway:
+    locations: classpath:db/migration, classpath:db/test-data
+
+server:
+  port: 10550
+  shutdown: graceful
+  servlet:
+    context-path: /api/v1
