@@ -15,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -30,24 +31,27 @@ public class Session {
     @SequenceGenerator(name = "session_seq", sequenceName = "session_seq", allocationSize = 1)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @ManyToOne()
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
     @Column(name = "start_price")
-    private Long startPrice;
+    private Double startPrice;
 
     @Column(name = "current_price")
-    private Long currentPrice;
+    private Double currentPrice;
 
     @Column(name = "start_time")
-    private Long startTime;
+    private LocalDateTime startTime;
 
     @Column(name = "end_time")
-    private Long endTime;
+    private LocalDateTime endTime;
 
     @Column(name = "bet")
-    private Long bet;
+    private Double bet;
 
     @Column(name = "location")
     private String location;

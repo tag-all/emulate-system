@@ -37,7 +37,7 @@ create table session
     start_price          real         not null,
     current_price        real check (current_price <= start_price),
     start_time           timestamp    not null,
-    duration_time        int          not null,
+    end_time             timestamp    not null,
     bet                  real         not null,
     location             varchar(255) not null,
     last_bet_customer_id int references customer (id),
