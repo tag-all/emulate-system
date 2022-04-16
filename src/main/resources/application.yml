@@ -1,6 +1,9 @@
 spring:
   application:
     name: emulate-system
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     platform: postgres
     driverClassName: org.postgresql.Driver
