@@ -7,6 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import ru.tagall.emulatesystem.application.common.Endpoints;
 import ru.tagall.emulatesystem.application.session.domain.CustomerKey;
 import ru.tagall.emulatesystem.application.session.domain.CustomerKeyRepository;
 import ru.tagall.emulatesystem.application.session.domain.OutSystemKey;
@@ -36,12 +37,22 @@ public class JwtFilter extends OncePerRequestFilter {
     public void doFilterInternal(@NonNull HttpServletRequest request, @NonNull HttpServletResponse response,
                                  @NonNull FilterChain filterChain)
             throws IOException, ServletException {
-        OutSystemKey outSystemKey = outSystemKeyRepository.getByKey(getSystemKey(request));
-        CustomerKey customerKey = customerKeyRepository.getByKey(getCustomerKey(request));
-        if (!ObjectUtils.isEmpty(outSystemKey) && !ObjectUtils.isEmpty(customerKey)) {
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    SaveInfo.of(customerKey.getCustomer().getId()), null, null);
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+        if (request.getServletPath().split("/")[1].equals("session") &&
+                request.getServletPath().split("/").length < 4) {
+            OutSystemKey outSystemKey = outSystemKeyRepository.getByKey(getSystemKey(request));
+            if (!ObjectUtils.isEmpty(outSystemKey)) {
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        null, null, null);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
+        } else {
+            OutSystemKey outSystemKey = outSystemKeyRepository.getByKey(getSystemKey(request));
+            CustomerKey customerKey = customerKeyRepository.getByKey(getCustomerKey(request));
+            if (!ObjectUtils.isEmpty(outSystemKey) && !ObjectUtils.isEmpty(customerKey)) {
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        SaveInfo.of(customerKey.getCustomer().getId()), null, null);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+            }
         }
         filterChain.doFilter(request, response);
     }

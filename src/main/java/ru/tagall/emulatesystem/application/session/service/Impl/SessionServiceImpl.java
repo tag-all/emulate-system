@@ -16,6 +16,7 @@ import ru.tagall.emulatesystem.error.ErrorDescription;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.stream.Collectors;
 
 @Service
@@ -48,8 +49,12 @@ public class SessionServiceImpl implements SessionService {
         boolean canNotBet = !ObjectUtils.isEmpty(session.getLastBetCustomer()) &&
                 saveInfo.getCustomerId().equals(session.getLastBetCustomer().getId());
         ErrorDescription.CUSTOMER_BED_BET.throwIfTrue(canNotBet);
-        if (Duration.between(session.getEndTime(), LocalDateTime.now()).compareTo(Duration.ofMinutes(5)) < 0) {
-            session.getEndTime().plusMinutes(5);
+        ErrorDescription.CUSTOMER_SESSION_CLOSE.throwIfTrue(session.getStatus().equals("CLOSE"));
+        long secCheck = Duration.between(LocalTime.now(), session.getEndTime().toLocalTime())
+                .toNanos()/1000000000;
+        if (secCheck <= 300) {
+            System.out.println("plus");
+            session.setEndTime(session.getEndTime().plusMinutes(5));
         }
         session.setLastBetCustomer(customerRepository.getById(saveInfo.getCustomerId()));
         double val = session.getCurrentPrice() - session.getStartPrice() * session.getBet();

@@ -15,6 +15,7 @@ import ru.tagall.emulatesystem.error.model.ApplicationErrorDto;
 public enum ErrorDescription {
 
     CUSTOMER_BED_BET(ErrorType.APP, "BET_001", "Пользователь не может перебить свою ставку."),
+    CUSTOMER_SESSION_CLOSE(ErrorType.APP, "BET_002", "Пользователь не может сделать ставку в закрытую сессию."),
 
     UNAUTHORIZED_ACCESS(ErrorType.APP, "APP_001", "Неавторизованный доступ."),
     ACCESS_DENIED(ErrorType.APP, "APP_002", "Недостаточно прав для доступа к ресурсу."),

@@ -38,32 +38,32 @@ values (nextval('customer_key_seq'), currval('customer_seq'), '2db75ed6-bd8f-11e
 
 insert into session (id, name, customer_id, start_price, current_price, start_time, end_time, bet, location,
                      status)
-values (nextval('session_seq'), 'Диагностика оборудования', 1, 30000.0, 30000.0, '2022-04-16 15:28:30',
-        '2022-04-16 23:28:30', 0.05,
+values (nextval('session_seq'), 'Диагностика оборудования', 1, 30000.0, 30000.0, '2022-04-17 06:28:30',
+        '2022-04-17 09:00:00', 0.05,
         'г. Санкт-Петербург', 'ACTIVE');
 
 insert into session (id, name, customer_id, start_price, current_price, start_time, end_time, bet, location,
                      status)
-values (nextval('session_seq'), 'Строительные товары', 2, 60000.0, 60000.0, '2022-04-16 23:36:10',
-        '2022-04-17 01:36:10', 0.05,
+values (nextval('session_seq'), 'Строительные товары', 2, 60000.0, 60000.0, '2022-04-17 07:36:10',
+        '2022-04-17 11:07:10', 0.05,
         'г. Санкт-Петербург', 'ACTIVE');
 
 insert into session (id, name, customer_id, start_price, current_price, start_time, end_time, bet, location,
                      status)
-values (nextval('session_seq'), 'Услуги технического обслуживания', 3, 25000.0, 25000.0, '2022-04-16 20:18:50',
-        '2022-04-17 03:00:50',
+values (nextval('session_seq'), 'Услуги технического обслуживания', 3, 25000.0, 25000.0, '2022-04-17 10:18:50',
+        '2022-04-17 13:00:50',
         0.05, 'г. Санкт-Петербург', 'ACTIVE');
 
 insert into session (id, name, customer_id, start_price, current_price, start_time, end_time, bet, location,
                      status)
-values (nextval('session_seq'), 'Отчистка вентиляци', 4, 15000.0, 15000.0, '2022-04-16 19:56:40', '2022-04-17 19:56:40',
+values (nextval('session_seq'), 'Отчистка вентиляци', 4, 15000.0, 15000.0, '2022-04-16 19:56:40', '2022-04-17 08:05:00',
         0.05,
         'г. Санкт-Петербург', 'ACTIVE');
 
 insert into session (id, name, customer_id, start_price, current_price, start_time, end_time, bet, location,
                      status)
-values (nextval('session_seq'), 'Ремонт электро-дверей', 1, 18000.0, 18000.0, '2022-04-16 19:56:40',
-        '2022-04-17 19:56:40', 0.05,
+values (nextval('session_seq'), 'Ремонт электро-дверей', 1, 18000.0, 18000.0, '2022-04-17 08:56:40',
+        '2022-04-17 20:56:40', 0.05,
         'г. Санкт-Петербург', 'ACTIVE');
 
 insert into session (id, name, customer_id, start_price, current_price, start_time, end_time, bet, location,
